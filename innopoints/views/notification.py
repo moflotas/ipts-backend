@@ -36,8 +36,8 @@ def get_notifications():
     return NotificationSchema(many=True).jsonify(query.all())
 
 
-@api.route('/notifications/subscribe', methods=['POST'])
-@login_required
+# @api.route('/notifications/subscribe', methods=['POST'])
+# @login_required
 def subscribe():
     """Adds the user's subscription to push notifications."""
     new_subscription = request.json
@@ -63,9 +63,9 @@ def subscribe():
     return NO_PAYLOAD
 
 
-@allow_no_json
-@api.route('/notifications/<int:notification_id>/read', methods=['PATCH'])
-@login_required
+# @allow_no_json
+# @api.route('/notifications/<int:notification_id>/read', methods=['PATCH'])
+# @login_required
 def read_notification(notification_id):
     """Marks a notification as read."""
     notification = Notification.query.get_or_404(notification_id)

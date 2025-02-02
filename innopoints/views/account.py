@@ -150,8 +150,8 @@ def list_users():
                    data=schema.dump(db_query.all()))
 
 
-@api.route('/accounts/<string:email>/balance', methods=['PATCH'])
-@admin_required
+# @api.route('/accounts/<string:email>/balance', methods=['PATCH'])
+# @admin_required
 def change_balance(email):
     """Change a user's balance."""
     if not isinstance(request.json.get('change'), int):
@@ -412,8 +412,8 @@ def get_notification_settings(email):
     return out_schema.jsonify(user.notification_settings)
 
 
-@api.route('/accounts/<email>/notify', methods=['POST'])
-@admin_required
+# @api.route('/accounts/<email>/notify', methods=['POST'])
+# @admin_required
 def service_notification(email):
     """Sends a custom service notification by the admin to any user."""
     user = Account.query.get_or_404(email)
@@ -431,9 +431,9 @@ def service_notification(email):
     return NO_PAYLOAD
 
 
-@api.route('/account/telegram', methods=['PATCH'], defaults={'email': None})
-@api.route('/accounts/<email>/telegram', methods=['PATCH'])
-@login_required
+# @api.route('/account/telegram', methods=['PATCH'], defaults={'email': None})
+# @api.route('/accounts/<email>/telegram', methods=['PATCH'])
+# @login_required
 def change_telegram(email):
     """Change a user's Telegram username.
     If the email is not passed, change own username."""
@@ -458,9 +458,9 @@ def change_telegram(email):
     return NO_PAYLOAD
 
 
-@api.route('/account/notification_settings', methods=['PATCH'], defaults={'email': None})
-@api.route('/accounts/<email>/notification_settings', methods=['PATCH'])
-@login_required
+# @api.route('/account/notification_settings', methods=['PATCH'], defaults={'email': None})
+# @api.route('/accounts/<email>/notification_settings', methods=['PATCH'])
+# @login_required
 def change_notification_settings(email):
     """Get the notification settings of the account.
     If the e-mail is not passed, return own settings."""
@@ -489,8 +489,8 @@ def change_notification_settings(email):
 
     return NO_PAYLOAD
 
-@api.route('/reclaim-innopoints', methods=['POST'])
-@login_required
+# @api.route('/reclaim-innopoints', methods=['POST'])
+# @login_required
 def reclaim_innopoints():
     """Get the innopoints the user had on the old system."""
     if 'email' not in request.json or 'password' not in request.json:

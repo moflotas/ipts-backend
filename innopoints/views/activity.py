@@ -39,8 +39,8 @@ NO_PAYLOAD = ('', 204)
 log = logging.getLogger(__name__)
 
 
-@api.route('/projects/<int:project_id>/activities', methods=['POST'])
-@login_required
+# @api.route('/projects/<int:project_id>/activities', methods=['POST'])
+# @login_required
 def create_activity(project_id):
     """Create a new activity to an existing project."""
     project = Project.query.get_or_404(project_id)
@@ -175,15 +175,15 @@ class ActivityAPI(MethodView):
         return NO_PAYLOAD
 
 
-activity_api = ActivityAPI.as_view('activity_api')
-api.add_url_rule('/projects/<int:project_id>/activities/<int:activity_id>',
-                 view_func=activity_api,
-                 methods=('PATCH', 'DELETE'))
+# activity_api = ActivityAPI.as_view('activity_api')
+# api.add_url_rule('/projects/<int:project_id>/activities/<int:activity_id>',
+#                  view_func=activity_api,
+#                  methods=('PATCH', 'DELETE'))
 
 
-@allow_no_json
-@api.route('/projects/<int:project_id>/activities/<int:activity_id>/publish', methods=['PATCH'])
-@login_required
+# @allow_no_json
+# @api.route('/projects/<int:project_id>/activities/<int:activity_id>/publish', methods=['PATCH'])
+# @login_required
 def publish_activity(project_id, activity_id):
     """Publish the activity."""
     project = Project.query.get_or_404(project_id)
@@ -224,8 +224,8 @@ def list_competences():
     return schema.jsonify(Competence.query.all())
 
 
-@api.route('/competences', methods=['POST'])
-@admin_required
+# @api.route('/competences', methods=['POST'])
+# @admin_required
 def create_competence():
     """Create a new competence."""
     in_schema = CompetenceSchema(exclude=('id',))
@@ -288,7 +288,7 @@ class CompetenceAPI(MethodView):
         return NO_PAYLOAD
 
 
-competence_api = CompetenceAPI.as_view('competence_api')
-api.add_url_rule('/competences/<int:compt_id>',
-                 view_func=competence_api,
-                 methods=('PATCH', 'DELETE'))
+# competence_api = CompetenceAPI.as_view('competence_api')
+# api.add_url_rule('/competences/<int:compt_id>',
+#                  view_func=competence_api,
+#                  methods=('PATCH', 'DELETE'))

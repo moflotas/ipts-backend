@@ -48,8 +48,8 @@ NO_PAYLOAD = ('', 204)
 log = logging.getLogger(__name__)
 
 
-@api.route('/projects/<int:project_id>/activities/<int:activity_id>/applications', methods=['POST'])
-@login_required
+# @api.route('/projects/<int:project_id>/activities/<int:activity_id>/applications', methods=['POST'])
+# @login_required
 def apply_for_activity(project_id, activity_id):
     """Apply for volunteering on a particular activity."""
     project = Project.query.get_or_404(project_id)
@@ -93,9 +93,9 @@ def apply_for_activity(project_id, activity_id):
     return out_schema.jsonify(new_application)
 
 
-@api.route('/projects/<int:project_id>/activities/<int:activity_id>/applications',
-           methods=['DELETE'])
-@login_required
+# @api.route('/projects/<int:project_id>/activities/<int:activity_id>/applications',
+#            methods=['DELETE'])
+# @login_required
 def take_back_application(project_id, activity_id):
     """Take back a volunteering application on a particular activity."""
     project = Project.query.get_or_404(project_id)
@@ -128,9 +128,9 @@ def take_back_application(project_id, activity_id):
     return NO_PAYLOAD
 
 
-@api.route('/projects/<int:project_id>/activities/<int:activity_id>'
-           '/applications/<int:application_id>', methods=['PATCH'])
-@login_required
+# @api.route('/projects/<int:project_id>/activities/<int:activity_id>'
+#            '/applications/<int:application_id>', methods=['PATCH'])
+# @login_required
 def edit_application(project_id, activity_id, application_id):
     """Change the status or the actual hours of an application."""
     application = Application.query.get_or_404(application_id)
@@ -360,18 +360,18 @@ class VolunteeringReportAPI(MethodView):
 
         return NO_PAYLOAD
 
-volunteering_report_api = VolunteeringReportAPI.as_view('volunteering_report_api')
-api.add_url_rule('/projects/<int:project_id>/activities/<int:activity_id>'
-                 '/applications/<int:application_id>/report',
-                 view_func=volunteering_report_api,
-                 methods=('POST', 'PATCH', 'DELETE'))
+# volunteering_report_api = VolunteeringReportAPI.as_view('volunteering_report_api')
+# api.add_url_rule('/projects/<int:project_id>/activities/<int:activity_id>'
+#                  '/applications/<int:application_id>/report',
+#                  view_func=volunteering_report_api,
+#                  methods=('POST', 'PATCH', 'DELETE'))
 
 
 # ----- Feedback -----
 
-@api.route('/projects/<int:project_id>/activities/<int:activity_id>'
-           '/applications/<int:application_id>/feedback', methods=['POST'])
-@login_required
+# @api.route('/projects/<int:project_id>/activities/<int:activity_id>'
+#            '/applications/<int:application_id>/feedback', methods=['POST'])
+# @login_required
 def leave_feedback(project_id, activity_id, application_id):
     """Leave feedback on a particular volunteering experience."""
     application = Application.query.get_or_404(application_id)

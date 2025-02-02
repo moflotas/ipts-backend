@@ -136,8 +136,8 @@ def list_products():
                    data=schema.dump(db_query.all()))
 
 
-@api.route('/products', methods=['POST'])
-@admin_required
+# @api.route('/products', methods=['POST'])
+# @admin_required
 def create_product():
     """Create a new product."""
     in_schema = ProductSchema(exclude=('id', 'addition_time',
@@ -239,7 +239,7 @@ class ProductDetailAPI(MethodView):
         return NO_PAYLOAD
 
 
-product_api = ProductDetailAPI.as_view('product_api')
-api.add_url_rule('/products/<int:product_id>',
-                 view_func=product_api,
-                 methods=('GET', 'PATCH', 'DELETE'))
+# product_api = ProductDetailAPI.as_view('product_api')
+# api.add_url_rule('/products/<int:product_id>',
+#                  view_func=product_api,
+#                  methods=('GET', 'PATCH', 'DELETE'))

@@ -234,8 +234,8 @@ def list_projects_for_review():
     return schema.jsonify(db_query.all())
 
 
-@api.route('/projects', methods=['POST'])
-@login_required
+# @api.route('/projects', methods=['POST'])
+# @login_required
 def create_project():
     """Create a new draft project."""
     in_schema = ProjectSchema(exclude=('id', 'creation_time', 'creator', 'admin_feedback',
@@ -273,9 +273,9 @@ def create_project():
     return out_schema.jsonify(new_project)
 
 
-@allow_no_json
-@api.route('/projects/<int:project_id>/publish', methods=['PATCH'])
-@login_required
+# @allow_no_json
+# @api.route('/projects/<int:project_id>/publish', methods=['PATCH'])
+# @login_required
 def publish_project(project_id):
     """Publish an existing draft project."""
     project = Project.query.get_or_404(project_id)
@@ -309,9 +309,9 @@ def publish_project(project_id):
     return NO_PAYLOAD
 
 
-@allow_no_json
-@api.route('/projects/<int:project_id>/request_review', methods=['PATCH'])
-@login_required
+# @allow_no_json
+# @api.route('/projects/<int:project_id>/request_review', methods=['PATCH'])
+# @login_required
 def request_review(project_id):
     """Request an admin's review for my project."""
     project = Project.query.get_or_404(project_id)
@@ -342,9 +342,9 @@ def request_review(project_id):
     return NO_PAYLOAD
 
 
-@allow_no_json
-@api.route('/projects/<int:project_id>/finalize', methods=['PATCH'])
-@login_required
+# @allow_no_json
+# @api.route('/projects/<int:project_id>/finalize', methods=['PATCH'])
+# @login_required
 def finalize_project(project_id):
     """Finalize the project."""
     project = Project.query.get_or_404(project_id)
@@ -381,8 +381,8 @@ def finalize_project(project_id):
     return NO_PAYLOAD
 
 
-@api.route('/projects/<int:project_id>/review_status', methods=['PATCH'])
-@admin_required
+# @api.route('/projects/<int:project_id>/review_status', methods=['PATCH'])
+# @admin_required
 def review_project(project_id):
     """Review a project in its finalizing stage."""
     project = Project.query.get_or_404(project_id)
@@ -430,8 +430,8 @@ def review_project(project_id):
     return NO_PAYLOAD
 
 
-@api.route('/projects/<int:project_id>/tags', methods=['PATCH'])
-@login_required
+# @api.route('/projects/<int:project_id>/tags', methods=['PATCH'])
+# @login_required
 def change_tags(project_id):
     """Change the list of tags on a project."""
     project = Project.query.get_or_404(project_id)
@@ -540,10 +540,10 @@ class ProjectDetailAPI(MethodView):
         return NO_PAYLOAD
 
 
-project_api = ProjectDetailAPI.as_view('project_detail_api')
-api.add_url_rule('/projects/<int:project_id>',
-                 view_func=project_api,
-                 methods=('GET', 'PATCH', 'DELETE'))
+# project_api = ProjectDetailAPI.as_view('project_detail_api')
+# api.add_url_rule('/projects/<int:project_id>',
+#                  view_func=project_api,
+#                  methods=('GET', 'PATCH', 'DELETE'))
 
 
 @api.route('/tags')
@@ -553,8 +553,8 @@ def list_tags():
     return out_schema.jsonify(Tag.query.all())
 
 
-@api.route('/tags', methods=['POST'])
-@admin_required
+# @api.route('/tags', methods=['POST'])
+# @admin_required
 def create_tag():
     """Create a new tag."""
     in_schema = TagSchema(only=('name',))
@@ -615,7 +615,7 @@ class TagDetailAPI(MethodView):
 
         return NO_PAYLOAD
 
-tag_api = TagDetailAPI.as_view('tag_detail_api')
-api.add_url_rule('/tags/<int:tag_id>',
-                 view_func=tag_api,
-                 methods=('PATCH', 'DELETE'))
+# tag_api = TagDetailAPI.as_view('tag_detail_api')
+# api.add_url_rule('/tags/<int:tag_id>',
+#                  view_func=tag_api,
+#                  methods=('PATCH', 'DELETE'))

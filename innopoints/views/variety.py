@@ -55,8 +55,8 @@ NO_PAYLOAD = ('', 204)
 log = logging.getLogger(__name__)
 
 
-@api.route('/products/<int:product_id>/varieties', methods=['POST'])
-@admin_required
+# @api.route('/products/<int:product_id>/varieties', methods=['POST'])
+# @admin_required
 def create_variety(product_id):
     """Create a new variety."""
     product = Product.query.get_or_404(product_id)
@@ -152,14 +152,14 @@ class VarietyAPI(MethodView):
         return NO_PAYLOAD
 
 
-variety_api = VarietyAPI.as_view('variety_api')
-api.add_url_rule('/products/<int:product_id>/varieties/<int:variety_id>',
-                 view_func=variety_api,
-                 methods=('PATCH', 'DELETE'))
+# variety_api = VarietyAPI.as_view('variety_api')
+# api.add_url_rule('/products/<int:product_id>/varieties/<int:variety_id>',
+#                  view_func=variety_api,
+#                  methods=('PATCH', 'DELETE'))
 
 
-@api.route('/products/<int:product_id>/varieties/<int:variety_id>/purchase', methods=['POST'])
-@login_required
+# @api.route('/products/<int:product_id>/varieties/<int:variety_id>/purchase', methods=['POST'])
+# @login_required
 def purchase_variety(product_id, variety_id):
     """Purchase a particular variety of a product."""
     purchased_amount = request.json.get('amount')
@@ -267,8 +267,8 @@ def get_purchases_for_review():
     return schema.jsonify(db_query.all())
 
 
-@api.route('/stock_changes/<int:stock_change_id>/status', methods=['PATCH'])
-@admin_required
+# @api.route('/stock_changes/<int:stock_change_id>/status', methods=['PATCH'])
+# @admin_required
 def edit_purchase_status(stock_change_id):
     """Edit the status of a particular purchase."""
     try:
@@ -318,8 +318,8 @@ def list_sizes():
     return schema.jsonify(Size.query.all())
 
 
-@api.route('/sizes', methods=['POST'])
-@admin_required
+# @api.route('/sizes', methods=['POST'])
+# @admin_required
 def create_size():
     """Create a new size."""
     in_out_schema = SizeSchema()
@@ -349,8 +349,8 @@ def list_colors():
     return schema.jsonify(Color.query.all())
 
 
-@api.route('/colors', methods=['POST'])
-@admin_required
+# @api.route('/colors', methods=['POST'])
+# @admin_required
 def create_color():
     """Create a new color."""
     in_out_schema = ColorSchema()

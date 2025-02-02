@@ -37,9 +37,9 @@ def get_mimetype(file: werkzeug.datastructures.FileStorage) -> str:
     return mimetypes.guess_type(file.filename)[0]
 
 
-@allow_no_json
-@api.route('/file', methods=['POST'])
-@login_required
+# @allow_no_json
+# @api.route('/file', methods=['POST'])
+# @login_required
 def upload_file():
     """Upload a file."""
     if 'file' not in request.files:
@@ -88,8 +88,8 @@ def retrieve_file(file_id):
     return response
 
 
-@api.route('/file/<int:file_id>', methods=['DELETE'])
-@login_required
+# @api.route('/file/<int:file_id>', methods=['DELETE'])
+# @login_required
 def delete_file(file_id):
     """Delete the given file by ID."""
     file = StaticFile.query.get_or_404(file_id)
